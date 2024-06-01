@@ -3,6 +3,21 @@ entries:
   api-template:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-06-01T17:23:45.664310872Z"
+    description: A template for bootstrapping a generic API instance
+    digest: b3a00c42f11cacf0236bca9f6ea92912ba8b08dafd7918e618c6ce14a7e892dd
+    maintainers:
+    - email: messageme@ganiulis.com
+      name: Gintaras Aniulis
+      url: https://github.com/ganiulis
+    name: api-template
+    sources:
+    - https://github.com/ganiulis/charts
+    urls:
+    - https://github.com/ganiulis/charts/releases/download/api-template-0.1.1/api-template-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-06-01T16:49:36.590285622Z"
     description: A template for bootstrapping a generic API instance
     digest: 709e266dd3817817347f4be4979f47727c73340025e784d0515a51b066384691
@@ -47,4 +62,4 @@ entries:
     urls:
     - https://github.com/ganiulis/charts/releases/download/postgres-template-0.1.0/postgres-template-0.1.0.tgz
     version: 0.1.0
-generated: "2024-06-01T16:49:36.590297765Z"
+generated: "2024-06-01T17:23:45.664320861Z"
