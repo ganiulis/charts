@@ -3,6 +3,21 @@ entries:
   postgres-template:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-06-01T16:48:33.430946903Z"
+    description: A template for bootstrapping a persistent PostgreSQL instance
+    digest: ad2fa222c897a3748e9b8f87b49c236e5691358a503fe66c15058829f69582d8
+    maintainers:
+    - email: messageme@ganiulis.com
+      name: Gintaras Aniulis
+      url: https://github.com/ganiulis
+    name: postgres-template
+    sources:
+    - https://github.com/ganiulis/charts
+    urls:
+    - https://github.com/ganiulis/charts/releases/download/postgres-template-0.1.1/postgres-template-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-06-01T14:18:10.841528864Z"
     description: A template for bootstrapping a persistent PostgreSQL instance
     digest: 0c6baa1cb5078f85e2e2949697369f539bf09d43c58a798d6ad205b1955a39ef
@@ -16,4 +31,4 @@ entries:
     urls:
     - https://github.com/ganiulis/charts/releases/download/postgres-template-0.1.0/postgres-template-0.1.0.tgz
     version: 0.1.0
-generated: "2024-06-01T14:18:10.841533784Z"
+generated: "2024-06-01T16:48:33.430958194Z"
