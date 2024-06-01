@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
 spec:
   serviceName: {{ .Values.container.name }}
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.container.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.container.name }}

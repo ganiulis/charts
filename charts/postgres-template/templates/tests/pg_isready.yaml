@@ -2,6 +2,12 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: {{ .Release.Name }}-test
+  labels:
+    environment: {{ .Values.environment }}
+    app: {{ .Values.container.name }}
+    app.kubernetes.io/name: {{ .Values.container.name }}
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test-success
 spec:
