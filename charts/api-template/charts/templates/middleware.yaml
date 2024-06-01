@@ -1,0 +1,15 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.container.name }}
+  labels:
+    environment: {{ .Values.environment }}
+    app: {{ .Values.container.name }} 
+    app.kubernetes.io/name: {{ .Values.container.name }}
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/managed-by: Helm
+spec:
+  stripPrefix:
+     prefixes:
+       - {{ .Values.path }}

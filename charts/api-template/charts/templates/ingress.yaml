@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.container.name }} 
+  labels:
+    environment: {{ .Values.environment }}
+    app: {{ .Values.container.name }} 
+    app.kubernetes.io/name: {{ .Values.container.name }}
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.host.clusterIssuer }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Values.namespace }}-{{ .Values.container.name }}@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: {{ .Values.host.domain }}
+      http:
+        paths:
+          - path: {{ .Values.host.path }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.container.name }}
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - {{ .Values.host.domain }}
+      secretName: {{ .Values.host.tlsSecret }}

@@ -1,0 +1,14 @@
+namespace: default
+environment: test
+container:
+  name: api
+  image: golang
+  version: latest
+  port: 8080
+  replicas: 2
+  imagePullSecret: regcred
+host:
+  domain: ganiulis.com
+  path: /api
+  clusterIssuer: letsencrypt
+  tlsSecret: letsencrypt
