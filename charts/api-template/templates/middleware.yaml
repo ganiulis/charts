@@ -12,4 +12,4 @@ metadata:
 spec:
   stripPrefix:
      prefixes:
-       - {{ .Values.path }}
+       - {{ .Values.host.path }}
