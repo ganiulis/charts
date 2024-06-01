@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.container.name }}
+  labels:
+    environment: {{ .Values.environment }}
+    app.kubernetes.io/name: {{ .Values.container.name }}
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: Helm
+spec:
+  serviceName: {{ .Values.container.name }}
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.container.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.container.name }}
+    spec:
+      containers:
+        - name: {{ .Values.container.name }}
+          image: postgres:{{ .Values.container.version }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - secretRef:
+                name: {{ .Values.container.name }}
+          volumeMounts:
+            - name: {{ .Values.container.name }}
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: {{ .Values.container.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.container.name }}

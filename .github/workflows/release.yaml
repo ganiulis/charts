@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - charts/**
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out into this repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+ 
+      - name: Configure Git
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Prepare GPG key
+        run: |
+          base64 -d <<< "${{ secrets.GPG_PRIVATE_KEY_BASE64 }}" > gpg-private-key.gpg
+          echo "${{ secrets.GPG_PASSPHRASE }}" > gpg-passphrase-file.txt
+ 
+      - name: Release charts
+        uses: helm/chart-releaser-action@v1.6.0
+        env:
+          CR_KEY: Gintaras Aniulis <messageme@ganiulis.com>
+          CR_KEYRING: gpg-private-key.gpg
+          CR_PASSPHRASE_FILE: gpg-passphrase-file.txt
+          CR_SIGN: true
+          CR_TOKEN: "${{ github.token }}"

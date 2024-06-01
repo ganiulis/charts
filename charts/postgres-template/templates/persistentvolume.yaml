@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.container.name }}
+  labels:
+    type: local
+    environment: {{ .Values.environment }}
+    app: {{ .Values.container.name }}
+    app.kubernetes.io/name: {{ .Values.container.name }}
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: Helm
+spec:
+  storageClassName: manual
+  capacity:
+    storage: {{ .Values.host.storageLimit }}
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: {{ .Values.host.volumePath }}
