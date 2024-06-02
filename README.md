@@ -1,5 +1,8 @@
 # Charts
 
+[![Release](https://github.com/ganiulis/charts/actions/workflows/release.yaml/badge.svg)](https://github.com/ganiulis/charts/actions/workflows/release.yaml)
+[![Pages](https://github.com/ganiulis/charts/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/ganiulis/charts/actions/workflows/pages/pages-build-deployment)
+
 ## Instructions
 
 ### Installation
