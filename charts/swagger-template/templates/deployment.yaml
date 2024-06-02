@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.container.name }} 
+  labels:
+    environment: {{ .Values.environment }}
+    app: {{ .Values.container.name }} 
+    app.kubernetes.io/name: {{ .Values.container.name }}
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/managed-by: Helm
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.container.name }}
+  replicas: {{ .Values.container.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.container.name }}
+        rollme: {{ randAlphaNum 5 | quote }}
+    spec:
+      containers:
+        - name: {{ .Values.container.name }}
+          image: swaggerapi/swagger-ui:{{ .Values.container.version }}
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: {{ .Values.container.name }}
+              mountPath: /app
+              readOnly: true
+      volumes:
+        - name: {{ .Values.container.name }}
+          configMap:
+            name: {{ .Values.container.name }}

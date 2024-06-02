@@ -1,0 +1,10 @@
+namespace: default
+environment: test
+container:
+  name: swagger
+  version: v5.13.0
+  replicas: 1
+host:
+  domain: ganiulis.com
+  clusterIssuer: letsencrypt
+  tlsSecret: letsencrypt

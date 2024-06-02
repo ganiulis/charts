@@ -1,0 +1,11 @@
+apiVersion: v2
+name: swagger-template
+version: 0.1.0
+description: A template for bootstrapping Swagger UI
+sources:
+  - https://github.com/ganiulis/charts
+maintainers:
+  - name: Gintaras Aniulis
+    email: messageme@ganiulis.com
+    url: https://github.com/ganiulis
+appVersion: "1.0.0"
