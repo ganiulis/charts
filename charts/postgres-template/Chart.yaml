@@ -1,6 +1,6 @@
 apiVersion: v2
 name: postgres-template
-version: 0.1.1
+version: 0.1.2
 description: A template for bootstrapping a persistent PostgreSQL instance
 sources:
   - https://github.com/ganiulis/charts

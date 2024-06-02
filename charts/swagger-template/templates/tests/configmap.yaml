@@ -6,13 +6,15 @@ metadata:
     environment: {{ .Values.environment }}
     app: {{ .Values.container.name }}
     app.kubernetes.io/name: {{ .Values.container.name }}
-    app.kubernetes.io/component: database
+    app.kubernetes.io/component: backend
     app.kubernetes.io/managed-by: Helm
   annotations:
-    "helm.sh/hook": test-success
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
 spec:
   containers:
   - name: {{ .Release.Name }}-test
-    image: {{ .Values.container.name }}
-    command: ["sh", "-c", "pg_isready -h {{ .Values.container.name }} -p 5432 -t 5"]
+    image: busybox
+    command: ["wget"]
+    args: ["{{ .Values.container.name }}:80/swagger.json"]
   restartPolicy: Never

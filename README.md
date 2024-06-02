@@ -9,8 +9,7 @@
 3. Fetch a `values.yaml` example with `helm show values ganiulis/... > values.yaml`.
 4. Some repos require a Secret to hold environmental variables. Create one with `kubectl create secret generic [CONTAINER_NAME]-env --from-env-file=[ENV_FILE]`.
 5. Deploy the chart with `helm install [RELEASE_NAME] ganiulis/... -f values.yaml`.
-6. Optional: run the test suite with `helm test [RELEASE_NAME]`.
-7. Optional: uninstall the chart with `helm uninstall [RELEASE_NAME]`.
+6. Optional: uninstall the chart with `helm uninstall [RELEASE_NAME]`.
 
 ### Notes
 

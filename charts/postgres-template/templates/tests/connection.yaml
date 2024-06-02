@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Release.Name }}-test
+  labels:
+    environment: {{ .Values.environment }}
+    app: {{ .Values.container.name }}
+    app.kubernetes.io/name: {{ .Values.container.name }}
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
+spec:
+  containers:
+  - name: {{ .Release.Name }}-test
+    image: postgres:{{ .Values.container.version }}
+    command: ["sh", "-c"]
+    args: ["pg_isready -h {{ .Values.container.name }} -p 5432 -t 5"]
+  restartPolicy: Never
