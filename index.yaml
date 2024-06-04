@@ -34,6 +34,21 @@ entries:
   postgres-template:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-06-04T19:16:55.354392936Z"
+    description: A template for bootstrapping a persistent PostgreSQL instance
+    digest: db3af4167548683e9084ee19624ce97d824768a5ab53736d4914ce81282179ca
+    maintainers:
+    - email: messageme@ganiulis.com
+      name: Gintaras Aniulis
+      url: https://github.com/ganiulis
+    name: postgres-template
+    sources:
+    - https://github.com/ganiulis/charts
+    urls:
+    - https://github.com/ganiulis/charts/releases/download/postgres-template-0.1.3/postgres-template-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-06-02T07:59:42.564872204Z"
     description: A template for bootstrapping a persistent PostgreSQL instance
     digest: 67e9365613892a41383ea38c44412709b94fa2ec14031fc34506326aa679924e
@@ -80,6 +95,21 @@ entries:
   swagger-template:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-06-04T19:16:55.548237371Z"
+    description: A template for bootstrapping Swagger UI
+    digest: 3c2e00df15f955abe494cbf27393adc54304175306e1181c7b3e0ba2b9d14f77
+    maintainers:
+    - email: messageme@ganiulis.com
+      name: Gintaras Aniulis
+      url: https://github.com/ganiulis
+    name: swagger-template
+    sources:
+    - https://github.com/ganiulis/charts
+    urls:
+    - https://github.com/ganiulis/charts/releases/download/swagger-template-0.1.1/swagger-template-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-06-02T07:59:42.697713383Z"
     description: A template for bootstrapping Swagger UI
     digest: 0c4008697ee05015fc1696709531f709edf4f6409ab2275ddf0996e5cf30cc3c
@@ -93,4 +123,4 @@ entries:
     urls:
     - https://github.com/ganiulis/charts/releases/download/swagger-template-0.1.0/swagger-template-0.1.0.tgz
     version: 0.1.0
-generated: "2024-06-02T07:59:42.697727209Z"
+generated: "2024-06-04T19:16:55.548264933Z"
