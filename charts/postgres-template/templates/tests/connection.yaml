@@ -9,8 +9,8 @@ metadata:
     app.kubernetes.io/component: database
     app.kubernetes.io/managed-by: Helm
   annotations:
-    "helm.sh/hook": post-install,post-upgrade
-    "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded,hook-failed
 spec:
   containers:
   - name: {{ .Release.Name }}-test
