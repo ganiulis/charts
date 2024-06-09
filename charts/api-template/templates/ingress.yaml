@@ -11,14 +11,16 @@ metadata:
     app.kubernetes.io/managed-by: Helm
   annotations:
     cert-manager.io/cluster-issuer: {{ .Values.host.clusterIssuer }}
+    {{- if .Values.host.path }}
     traefik.ingress.kubernetes.io/router.middlewares: {{ .Values.namespace }}-{{ .Values.container.name }}@kubernetescrd
+    {{- end }}
 spec:
   ingressClassName: traefik
   rules:
     - host: {{ .Values.host.domain }}
       http:
         paths:
-          - path: {{ .Values.host.path }}
+          - path: {{ .Values.host.path | default "/" }}
             pathType: Prefix
             backend:
               service:

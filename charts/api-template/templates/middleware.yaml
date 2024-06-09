@@ -1,3 +1,4 @@
+{{- if .Values.host.path }}
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
@@ -13,3 +14,4 @@ spec:
   stripPrefix:
      prefixes:
        - {{ .Values.host.path }}
+{{- end }}
