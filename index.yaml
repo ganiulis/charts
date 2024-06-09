@@ -3,6 +3,21 @@ entries:
   api-template:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-06-09T10:39:18.054234113Z"
+    description: Bootstrap a generic API.
+    digest: e1f12612174296b56e9bbd18904956dd20c9a28785614967f1837cdc0c135d52
+    maintainers:
+    - email: messageme@ganiulis.com
+      name: Gintaras Aniulis
+      url: https://github.com/ganiulis
+    name: api-template
+    sources:
+    - https://github.com/ganiulis/charts
+    urls:
+    - https://github.com/ganiulis/charts/releases/download/api-template-0.2.1/api-template-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-06-09T10:23:11.797217128Z"
     description: A template for bootstrapping a generic API instance
     digest: 718b184f2b97124a5005fbd202533444fbcd007a176677f0aacf30d7d6132481
@@ -47,6 +62,21 @@ entries:
     - https://github.com/ganiulis/charts/releases/download/api-template-0.1.0/api-template-0.1.0.tgz
     version: 0.1.0
   postgres-template:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-06-09T10:39:18.155190656Z"
+    description: Bootstrap PostgreSQL.
+    digest: 8fff4821b7477c5b902143c920ea881b1b1b9dbaecfd83bfb23bb70ef72dd3b4
+    maintainers:
+    - email: messageme@ganiulis.com
+      name: Gintaras Aniulis
+      url: https://github.com/ganiulis
+    name: postgres-template
+    sources:
+    - https://github.com/ganiulis/charts
+    urls:
+    - https://github.com/ganiulis/charts/releases/download/postgres-template-0.1.4/postgres-template-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2024-06-04T19:16:55.354392936Z"
@@ -110,6 +140,21 @@ entries:
   swagger-template:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-06-09T10:39:18.269337865Z"
+    description: Bootstrap Swagger UI.
+    digest: 3ac2cd719cb5d80dbe0802ed86a3103beb1d6d78cb90cf75f97e28868dd82ee5
+    maintainers:
+    - email: messageme@ganiulis.com
+      name: Gintaras Aniulis
+      url: https://github.com/ganiulis
+    name: swagger-template
+    sources:
+    - https://github.com/ganiulis/charts
+    urls:
+    - https://github.com/ganiulis/charts/releases/download/swagger-template-0.1.2/swagger-template-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-06-04T19:16:55.548237371Z"
     description: A template for bootstrapping Swagger UI
     digest: 3c2e00df15f955abe494cbf27393adc54304175306e1181c7b3e0ba2b9d14f77
@@ -138,4 +183,4 @@ entries:
     urls:
     - https://github.com/ganiulis/charts/releases/download/swagger-template-0.1.0/swagger-template-0.1.0.tgz
     version: 0.1.0
-generated: "2024-06-09T10:23:11.79725667Z"
+generated: "2024-06-09T10:39:18.269392858Z"
