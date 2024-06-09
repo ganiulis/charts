@@ -1,7 +1,7 @@
 apiVersion: v2
 name: swagger-template
-version: 0.1.1
-description: A template for bootstrapping Swagger UI
+version: 0.1.2
+description: Bootstrap Swagger UI.
 sources:
   - https://github.com/ganiulis/charts
 maintainers:

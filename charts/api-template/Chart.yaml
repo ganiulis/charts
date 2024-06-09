@@ -1,7 +1,7 @@
 apiVersion: v2
 name: api-template
-version: 0.2.0
-description: A template for bootstrapping a generic API instance
+version: 0.2.1
+description: Bootstrap a generic API.
 sources:
   - https://github.com/ganiulis/charts
 maintainers:
