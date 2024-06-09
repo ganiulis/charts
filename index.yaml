@@ -3,6 +3,21 @@ entries:
   api-template:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-06-09T10:44:44.105919289Z"
+    description: Bootstrap a generic API.
+    digest: 5af23fcbf35907e4d5cb75fc72a755b90495da01cbb5bdb3d6798cff0e06689f
+    maintainers:
+    - email: messageme@ganiulis.com
+      name: Gintaras Aniulis
+      url: https://github.com/ganiulis
+    name: api-template
+    sources:
+    - https://github.com/ganiulis/charts
+    urls:
+    - https://github.com/ganiulis/charts/releases/download/api-template-0.2.2/api-template-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-06-09T10:39:18.054234113Z"
     description: Bootstrap a generic API.
     digest: e1f12612174296b56e9bbd18904956dd20c9a28785614967f1837cdc0c135d52
@@ -183,4 +198,4 @@ entries:
     urls:
     - https://github.com/ganiulis/charts/releases/download/swagger-template-0.1.0/swagger-template-0.1.0.tgz
     version: 0.1.0
-generated: "2024-06-09T10:39:18.269392858Z"
+generated: "2024-06-09T10:44:44.106174216Z"
