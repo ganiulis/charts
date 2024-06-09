@@ -10,7 +10,9 @@ metadata:
     app.kubernetes.io/component: backend
     app.kubernetes.io/managed-by: Helm
   annotations:
+    {{- if .Values.host.clusterIssuer }}
     cert-manager.io/cluster-issuer: {{ .Values.host.clusterIssuer }}
+    {{- end }}
     {{- if .Values.host.path }}
     traefik.ingress.kubernetes.io/router.middlewares: {{ .Values.namespace }}-{{ .Values.container.name }}@kubernetescrd
     {{- end }}
@@ -27,7 +29,9 @@ spec:
                 name: {{ .Values.container.name }}
                 port:
                   number: 80
+  {{- if .Values.host.tlsSecret }}
   tls:
     - hosts:
         - {{ .Values.host.domain }}
       secretName: {{ .Values.host.tlsSecret }}
+  {{- end }}

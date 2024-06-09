@@ -10,5 +10,5 @@ container:
 host:
   domain: ganiulis.com
   path: /api # Optional
-  clusterIssuer: letsencrypt
-  tlsSecret: letsencrypt
+  clusterIssuer: letsencrypt # Optional
+  tlsSecret: letsencrypt # Optional
