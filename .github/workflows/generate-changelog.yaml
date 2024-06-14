@@ -17,5 +17,5 @@ jobs:
       - name: Generate CHANGELOG.md
         uses: ganiulis/generate-changelog-action@0.1.2
         with:
-          repository-name: deploy-api-action
+          repository-name: charts
 
