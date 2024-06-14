@@ -36,3 +36,8 @@ jobs:
           CR_PASSPHRASE_FILE: gpg-passphrase-file.txt
           CR_SIGN: true
           CR_TOKEN: "${{ github.token }}"
+
+      - name: Generate CHANGELOG.md
+        uses: ganiulis/generate-changelog-action@0.1.1
+        with:
+          repository-name: charts
