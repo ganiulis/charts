@@ -7,10 +7,11 @@ on:
     paths:
       - charts/**
 
+permissions:
+  contents: write
+
 jobs:
   release:
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Check out into this repository
@@ -37,6 +38,14 @@ jobs:
           CR_SIGN: true
           CR_TOKEN: "${{ github.token }}"
 
+      - name: Generate CHANGELOG.md
+        uses: ganiulis/generate-changelog-action@0.1.1
+        with:
+          repository-name: charts
+
+  generate-changelog:
+    runs-on: ubuntu-latest
+    steps:
       - name: Generate CHANGELOG.md
         uses: ganiulis/generate-changelog-action@0.1.1
         with:
