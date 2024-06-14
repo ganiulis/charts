@@ -1,0 +1,21 @@
+name: Generate CHANGELOG.md
+
+run-name: Generate CHANGELOG.md (${{ github.sha }})
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+    contents: write
+
+jobs:
+  generate-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate CHANGELOG.md
+        uses: ganiulis/generate-changelog-action@0.1.2
+        with:
+          repository-name: deploy-api-action
+
