@@ -29,6 +29,19 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ .Values.container.name }}-env
+          {{- if .Values.container.envPath }}
+          volumeMounts:
+            - name: {{ .Values.container.name }}
+              mountPath: {{ .Values.container.envPath }}/.env
+              subPath: .env
+              readOnly: true
+          {{- end }}
+      {{- if .Values.container.envPath }}
+      volumes:
+        - name: {{ .Values.container.name }}
+          secret:
+            secretName: {{ .Values.container.name }}-dotenv
+      {{- end }}
       imagePullSecrets:
         - name: {{ .Values.container.imagePullSecret }}
 

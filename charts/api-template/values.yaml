@@ -7,8 +7,9 @@ container:
   port: 8080
   replicas: 2
   imagePullSecret: regcred
+  envPath: /api # Optional. Requires base64-encoded .env data to be stored in a [CONTAINER_NAME]-dotenv Secret.
 host:
   domain: ganiulis.com
-  path: /api # Optional
-  clusterIssuer: letsencrypt # Optional
-  tlsSecret: letsencrypt # Optional
+  path: /api # Optional. Skips Middleware if removed.
+  clusterIssuer: letsencrypt # Optional.
+  tlsSecret: letsencrypt # Optional.
