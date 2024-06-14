@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate CHANGELOG.md
-        uses: ganiulis/generate-changelog-action@0.1.2
+        uses: ganiulis/generate-changelog-action@0.1.1
         with:
           repository-name: charts
 
