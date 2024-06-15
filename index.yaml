@@ -94,6 +94,21 @@ entries:
   postgres-template:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-06-15T13:52:07.020865754Z"
+    description: Bootstrap PostgreSQL.
+    digest: e6fe60c7aa05871d2f6a4ea0a92377601a3a56d6f9d3b6925f82b2d398263d93
+    maintainers:
+    - email: messageme@ganiulis.com
+      name: Gintaras Aniulis
+      url: https://github.com/ganiulis
+    name: postgres-template
+    sources:
+    - https://github.com/ganiulis/charts
+    urls:
+    - https://github.com/ganiulis/charts/releases/download/postgres-template-0.1.5/postgres-template-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-06-09T10:39:18.155190656Z"
     description: Bootstrap PostgreSQL.
     digest: 8fff4821b7477c5b902143c920ea881b1b1b9dbaecfd83bfb23bb70ef72dd3b4
@@ -213,4 +228,4 @@ entries:
     urls:
     - https://github.com/ganiulis/charts/releases/download/swagger-template-0.1.0/swagger-template-0.1.0.tgz
     version: 0.1.0
-generated: "2024-06-14T18:11:41.957223387Z"
+generated: "2024-06-15T13:52:07.020904146Z"
