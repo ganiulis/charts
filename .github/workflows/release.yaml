@@ -44,6 +44,7 @@ jobs:
           repository-name: charts
 
   generate-changelog:
+    needs: release
     runs-on: ubuntu-latest
     steps:
       - name: Generate CHANGELOG.md
