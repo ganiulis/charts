@@ -16,5 +16,5 @@ spec:
   - name: {{ .Release.Name }}-test
     image: postgres:{{ .Values.container.version }}
     command: ["sh", "-c"]
-    args: ["pg_isready -h {{ .Values.container.name }} -p 5432 -t 5"]
+    args: ["pg_isready -h {{ .Values.container.name }} -p 5432 -t 30"]
   restartPolicy: Never
