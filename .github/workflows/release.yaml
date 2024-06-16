@@ -38,11 +38,6 @@ jobs:
           CR_SIGN: true
           CR_TOKEN: "${{ github.token }}"
 
-      - name: Generate CHANGELOG.md
-        uses: ganiulis/generate-changelog-action@0.1.1
-        with:
-          repository-name: charts
-
   generate-changelog:
     needs: release
     runs-on: ubuntu-latest
