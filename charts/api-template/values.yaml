@@ -1,15 +1,84 @@
+# Some prerequisites:
+# 1. Create a Secret to store environmental variables:
+#     kubectl create secret generic [CONTAINER_NAME]-env -from-env-file=[ENV_FILE]
+#
+# 2. Make sure DNS is configured to point the domain name to the server IP.
+
+# Recommended to change from the default namespace.
 namespace: default
+
+# Labels all objects (metadata.labels.environment).
 environment: test
+
+# Resolves all Kubernetes objects to the same name.
+name: api
+
 container:
-  name: api
-  image: golang
-  version: latest
-  port: 8080
   replicas: 2
-  imagePullSecret: regcred
-  envPath: /api # Optional. Requires base64-encoded .env data to be stored in a [CONTAINER_NAME]-dotenv Secret.
+  version: latest
+
+  # Fully-qualified image name.
+  image: traefik/whoami
+ 
+  # Container port.
+  port: 8080 
+
+  # Pulls the image from a private registry. 
+  #
+  # Create a Secret to store a private registry token:
+  #   kubectl create secret generic regcred --from-file=.dockerconfigjson=[DOCKER_CONFIG_JSON] --type=kubernetes.io/dockerconfigjson
+  #
+  # See https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/.
+  #
+  imagePullSecret: regcred 
+
+  # Optional.
+  #
+  # Some applications (eg.: Symfony) require .env files to be stored at a particular place.
+  #
+  # Create a [CONTAINER_NAME]-dotenv Secret for the .env file first.
+  #
+  # This is different from [CONTAINER_NAME]-env, which are environmental variables for the entire container.
+  #
+  envPath: /api 
+
 host:
-  domain: ganiulis.com
-  path: /api # Optional. Skips Middleware if removed.
-  clusterIssuer: letsencrypt # Optional.
-  tlsSecret: letsencrypt # Optional.
+  domain: example.com
+
+  # Optional.
+  #
+  # Empty host.subdomain adds www routing when removed: https://www.example.com.
+  # 
+  # Empty host.path skips Middleware object creation when removed.
+  #
+  # This example resolves to https://test.example.com/api.
+  #
+  subdomain: test
+  path: /api
+
+# Optional, but highly recommended.
+#
+# Creates a ClusterIssuer for SSL/TLS with Let's Encrypt.
+#
+# Requires cert-manager to be configured beforehand.
+#
+# See https://cert-manager.io/docs/installation/kubectl/.
+#
+certification:
+  email: steve@example.com
+
+  # Optional.
+  #
+  # For Cloudflare users.
+  #
+  # Requires a Secret with a stored Cloudflare API key.
+  #
+  # Create the Secret:
+  #   kubectl create secret generic cloudflare --from-literal=token=[CLOUDFLARE_API_TOKEN]
+  #
+  # See https://nolifelover.medium.com/create-cert-manager-clustterissuer-with-cloudflare-for-automate-issue-and-renew-lets-encrypt-ssl-4877d3f12b44.
+  #
+  cloudflare:
+    secretName: cloudflare
+    key: token
+

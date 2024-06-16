@@ -2,11 +2,11 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: {{ .Values.namespace }}
-  name: {{ .Values.container.name }} 
+  name: {{ .Values.name }} 
   labels:
     environment: {{ .Values.environment }}
-    app: {{ .Values.container.name }} 
-    app.kubernetes.io/name: {{ .Values.container.name }}
+    app: {{ .Values.name }} 
+    app.kubernetes.io/name: {{ .Values.name }}
     app.kubernetes.io/component: backend
     app.kubernetes.io/managed-by: Helm
   annotations:
@@ -14,24 +14,43 @@ metadata:
     cert-manager.io/cluster-issuer: {{ .Values.host.clusterIssuer }}
     {{- end }}
     {{- if .Values.host.path }}
-    traefik.ingress.kubernetes.io/router.middlewares: {{ .Values.namespace }}-{{ .Values.container.name }}@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Values.namespace }}-{{ .Values.name }}@kubernetescrd
     {{- end }}
 spec:
   ingressClassName: traefik
   rules:
-    - host: {{ .Values.host.domain }}
+    {{- if .Values.host.subdomain }}
+    - host: {{ .Values.host.subdomain }}.{{ .Values.host.domain }}
+    {{- else }}
+    - host: www.{{ .Values.host.domain }}
       http:
         paths:
           - path: {{ .Values.host.path | default "/" }}
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.container.name }}
+                name: {{ .Values.name }}
                 port:
                   number: 80
-  {{- if .Values.host.tlsSecret }}
+    - host: {{ .Values.host.domain }}
+    {{- end }}
+      http:
+        paths:
+          - path: {{ .Values.host.path | default "/" }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.name }}
+                port:
+                  number: 80
+  {{- if .Values.host.certEmail }}
   tls:
-    - hosts:
+    - secretName: letsencrypt
+      hosts:
+        {{- if .Values.host.subdomain }}
+        - {{- .Values.host.subdomain }}.{{ .Values.host.domain }}
+        {{- else }}
+        - www.{{ .Values.host.domain }}
         - {{ .Values.host.domain }}
-      secretName: {{ .Values.host.tlsSecret }}
+        {{- end }}
   {{- end }}

@@ -2,45 +2,45 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: {{ .Values.namespace }}
-  name: {{ .Values.container.name }}
+  name: {{ .Values.name }}
   labels:
     environment: {{ .Values.environment }}
-    app: {{ .Values.container.name }} 
-    app.kubernetes.io/name: {{ .Values.container.name }}
+    app: {{ .Values.name }} 
+    app.kubernetes.io/name: {{ .Values.name }}
     app.kubernetes.io/component: backend
     app.kubernetes.io/managed-by: Helm
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.container.name }}
+      app: {{ .Values.name }}
   replicas: {{ .Values.container.replicas }}
   template:
     metadata:
       labels:
-        app: {{ .Values.container.name }}
+        app: {{ .Values.name }}
         rollme: {{ randAlphaNum 5 | quote }}
     spec:
       containers:
-        - name: {{ .Values.container.name }}
+        - name: {{ .Values.name }}
           image: {{ .Values.container.image }}:{{ .Values.container.version }}
           imagePullPolicy: Always
           ports:
             - containerPort: {{ .Values.container.port }}
           envFrom:
             - secretRef:
-                name: {{ .Values.container.name }}-env
+                name: {{ .Values.name }}-env
           {{- if .Values.container.envPath }}
           volumeMounts:
-            - name: {{ .Values.container.name }}
+            - name: {{ .Values.name }}
               mountPath: {{ .Values.container.envPath }}/.env
               subPath: .env
               readOnly: true
           {{- end }}
       {{- if .Values.container.envPath }}
       volumes:
-        - name: {{ .Values.container.name }}
+        - name: {{ .Values.name }}
           secret:
-            secretName: {{ .Values.container.name }}-dotenv
+            secretName: {{ .Values.name }}-dotenv
       {{- end }}
       imagePullSecrets:
         - name: {{ .Values.container.imagePullSecret }}

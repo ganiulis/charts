@@ -1,0 +1,25 @@
+{{- if .Values.certification.email }}
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: {{ .Values.name }}
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: {{ .Values.certification.email }}
+    privateKeySecretRef:
+      name: letsencrypt
+    solvers:
+    {{- if .Values.certification.cloudflare.secretName }}
+    - dns01:
+        cloudflare:
+          email: {{ .Values.certification.email }}
+          apiTokenSecretRef:
+            name: {{ .Values.certification.cloudflare.secretName }}
+            key: {{ .Values.certification.cloudflare.key }}
+    {{- else }}
+    - http01:
+        ingress:
+          class: traefik 
+    {{- end }} 
+{{- end }}
