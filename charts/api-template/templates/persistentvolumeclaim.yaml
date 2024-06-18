@@ -1,0 +1,22 @@
+{{- range .Values.volumes.list }}
+{{- if .hostPath }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: {{ $.Values.namespace }}
+  name: {{ $.Values.name }}-{{ .name }}
+  labels:
+    environment: {{ $.Values.environment }}
+    app: {{ $.Values.name }} 
+    app.kubernetes.io/name: {{ $.Values.name }}
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/managed-by: Helm
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 8Gi
+{{- end }}
+{{- end }}

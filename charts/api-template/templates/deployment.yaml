@@ -20,28 +20,43 @@ spec:
         app: {{ .Values.name }}
         rollme: {{ randAlphaNum 5 | quote }}
     spec:
+      imagePullSecrets:
+        - name: {{ .Values.container.imagePullSecret }}
       containers:
         - name: {{ .Values.name }}
-          image: {{ .Values.container.image }}:{{ .Values.container.version }}
+          image: {{ .Values.container.image }}:{{ .Values.container.version | default "latest" }}
           imagePullPolicy: Always
           ports:
             - containerPort: {{ .Values.container.port }}
           envFrom:
             - secretRef:
                 name: {{ .Values.name }}-env
-          {{- if .Values.container.envPath }}
+          {{- if .Values.volumes.list }}
           volumeMounts:
-            - name: {{ .Values.name }}
-              mountPath: {{ .Values.container.envPath }}/.env
-              subPath: .env
+          {{- range .Values.volumes.list }}
+            - name: {{ $.Values.name }}-{{ .name }}
+              mountPath: {{ .containerPath }}{{ .file }}
+              {{- if .file }}
+              subPath: {{ .file }}
               readOnly: true
+              {{- end }}
           {{- end }}
-      {{- if .Values.container.envPath }}
-      volumes:
-        - name: {{ .Values.name }}
-          secret:
-            secretName: {{ .Values.name }}-dotenv
+          {{- end }}
+      {{- if .Values.volumes.groupId }}
+      securityContext:
+        fsGroup: {{ .Values.volumes.groupId }}
       {{- end }}
-      imagePullSecrets:
-        - name: {{ .Values.container.imagePullSecret }}
+      {{- if .Values.volumes.list }}
+      volumes:
+      {{- range .Values.volumes.list }}
+        - name: {{ $.Values.name }}-{{ .name }}
+          {{- if .file }}
+          secret:
+            secretName: {{ $.Values.name }}-{{ .name }}
+          {{- else }}
+          persistentVolumeClaim:
+            claimName: {{ $.Values.name }}-{{ .name }}
+          {{- end }}
+      {{- end }}
+      {{- end }}
 
