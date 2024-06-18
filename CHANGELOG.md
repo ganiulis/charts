@@ -1,5 +1,9 @@
 # Changelog
 
+## [api-template-0.4.0](https://github.com/ganiulis/charts/tree/api-template-0.4.0) (2024-06-18)
+
+[Full Changelog](https://github.com/ganiulis/charts/compare/api-template-0.3.0...api-template-0.4.0)
+
 ## [api-template-0.3.0](https://github.com/ganiulis/charts/tree/api-template-0.3.0) (2024-06-16)
 
 [Full Changelog](https://github.com/ganiulis/charts/compare/postgres-template-0.1.5...api-template-0.3.0)
