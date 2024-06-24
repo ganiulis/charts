@@ -1,5 +1,9 @@
 # Changelog
 
+## [api-template-0.4.1](https://github.com/ganiulis/charts/tree/api-template-0.4.1) (2024-06-24)
+
+[Full Changelog](https://github.com/ganiulis/charts/compare/api-template-0.4.0...api-template-0.4.1)
+
 ## [api-template-0.4.0](https://github.com/ganiulis/charts/tree/api-template-0.4.0) (2024-06-18)
 
 [Full Changelog](https://github.com/ganiulis/charts/compare/api-template-0.3.0...api-template-0.4.0)
