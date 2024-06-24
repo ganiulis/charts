@@ -42,11 +42,31 @@ spec:
               {{- end }}
           {{- end }}
           {{- end }}
+      {{- if .Values.initContainer.image }}
+      initContainers:
+        - name: {{ .Values.name }}-init
+          image: {{ .Values.initContainer.image }}:latest
+          args: {{ .Values.initContainer.args }}
+          envFrom:
+            - secretRef:
+                name: {{ .Values.name }}-init-env
+      {{- if .Values.initContainer.mountPath }}
+          volumeMounts:
+            - name: {{ .Values.name }}-init
+              mountPath: {{ .Values.initContainer.mountPath }}
+              readOnly: true
+      {{- end }}
+      {{- end }}
       {{- if .Values.volumes.groupId }}
       securityContext:
         fsGroup: {{ .Values.volumes.groupId }}
       {{- end }}
-      {{- if .Values.volumes.list }}
+      {{- if .Values.initContainer.mountPath }}
+      volumes:
+        - name: {{ .Values.name }}-init
+          configMap:
+            name: {{ .Values.name }}-init
+      {{- else if .Values.volumes.list }}
       volumes:
       {{- range .Values.volumes.list }}
         - name: {{ $.Values.name }}-{{ .name }}

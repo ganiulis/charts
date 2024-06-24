@@ -1,6 +1,6 @@
 # Some prerequisites:
 # 1. Create a Secret to store environmental variables:
-#     kubectl create secret generic [CONTAINER_NAME]-env -from-env-file=[ENV_FILE]
+#     kubectl create secret generic [CONTAINER_NAME]-env --from-env-file=[ENV_FILE]
 #
 # 2. Make sure DNS is configured to point the domain name to the server IP.
 
@@ -32,6 +32,27 @@ container:
   #
   imagePullSecret: regcred 
 
+# Optional.
+#
+# Runs an image before the primary container starts.
+#
+# Create a Secret beforehand:
+#   kubectl create secret generic [CONTAINER_NAME]-init-env --from-env-file=[ENV_FILE]
+#
+# Useful for running migrations.
+#
+initContainer:
+  image: busybox
+  args: ["-la"]
+
+  # Optional.
+  #
+  # Mount a readonly volume.
+  #
+  # Create a ConfigMap beforehand:
+  #   kubectl create configmap [CONTAINER_NAME]-init ...
+  #
+  mountPath: /data/migrations
 
 host:
   domain: example.com
