@@ -1,7 +1,7 @@
 apiVersion: v2
 name: api-template
-version: 0.4.1
-description: Bootstrap a generic API.
+version: 0.4.2
+description: Bootstrap a generic API. See [changes from the previous version](https://github.com/ganiulis/charts/compare/api-template-0.4.1...api-template-0.4.2).
 sources:
   - https://github.com/ganiulis/charts
 maintainers:
